@@ -16,12 +16,12 @@ task:
       cpu: 8
       memory: 32G
 
-env_script:
+  env_script:
       - cat /etc/os*
       - env
 
-sync_script:
+  sync_script:
       curl -sL https://raw.githubusercontent.com/Azure-007/kernel_xiaomi_raphael_CI/main/sync.sh | bash
 
-build_script:
+  build_script:
       curl -sL https://raw.githubusercontent.com/Azure-007/kernel_xiaomi_raphael_CI/main/build.sh | bash
