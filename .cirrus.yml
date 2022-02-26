@@ -21,7 +21,7 @@ task:
       - env
 
   sync_script:
-      curl -sL https://raw.githubusercontent.com/Azure-007/kernel_xiaomi_raphael_CI/main/sync.sh | bash
+      curl -sL https://raw.githubusercontent.com/AzurE-007/CI_kernel_xiaomi_raphael/main/sync.sh | bash
 
   build_script:
-      curl -sL https://raw.githubusercontent.com/Azure-007/kernel_xiaomi_raphael_CI/main/build.sh | bash
+      curl -sL https://raw.githubusercontent.com/AzurE-007/CI_kernel_xiaomi_raphael/main/build.sh | bash
