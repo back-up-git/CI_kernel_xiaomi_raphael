@@ -148,35 +148,13 @@ TERM=xterm
 export KBUILD_BUILD_HOST CI_BRANCH TERM
 
 ## Check for CI
-if [ "$CI" ]
-then
-	if [ "$CIRCLECI" ]
-	then
-		export KBUILD_BUILD_VERSION=$CIRCLE_BUILD_NUM
-		export KBUILD_BUILD_HOST="CircleCI"
-		export CI_BRANCH=$CIRCLE_BRANCH
-	fi
-    if [ "$CIRRUS_CI" ]
-	then
-		export KBUILD_BUILD_VERSION=$CIRRUS_BUILD_ID
-		export KBUILD_BUILD_HOST="CirrusCI"
-		export CI_BRANCH=$CIRRUS_BRANCH
-	fi
-	if [ "$DRONE" ]
-	then
-		export KBUILD_BUILD_VERSION=$DRONE_BUILD_NUMBER
-		export KBUILD_BUILD_HOST=$DRONE_SYSTEM_HOST
-		export CI_BRANCH=$DRONE_BRANCH
-		export BASEDIR=$DRONE_REPO_NAME # overriding
-		export SERVER_URL="${DRONE_SYSTEM_PROTO}://${DRONE_SYSTEM_HOSTNAME}/${AUTHOR}/${BASEDIR}/${KBUILD_BUILD_VERSION}"
-	else
-		echo "Not presetting Build Version"
-	fi
-fi
+
+export KBUILD_BUILD_VERSION=$CIRRUS_BUILD_ID
+export KBUILD_BUILD_HOST=":Kernel-CI"
+export CI_BRANCH=$CIRRUS_BRANCH
 
 #Check Kernel Version
-KERVER=$(make kernelversion)
-
+KERVER=$(cat $KERNEL_ROOTDIR/out/.config | grep Linux/arm64 | cut -d " " -f3)
 
 # Set a commit head
 COMMIT_HEAD=$(git log --oneline -1)
